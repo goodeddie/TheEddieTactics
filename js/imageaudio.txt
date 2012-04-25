@@ -1,0 +1,113 @@
+/*************************************************************************************************/
+/* LOADING IMAGES                                                                                */
+/*************************************************************************************************/
+var ImageLoader = {
+	imagesPath: "img/",
+	numImages: 0, // index for number of images
+	numImagesLoaded: 0, // index for number of images loaded
+	
+	imageLoaded:	function (fileName) {
+									ImageLoader.numImagesLoaded++;
+									
+									alert("Image loaded: " + fileName + ".");
+								},
+	imageFailed:	function (fileName) {
+									alert("Image failed: " + fileName + ".");
+								},
+	loadingComplete:	function () {
+											// If number of images loaded is equal to total number of images
+											if (ImageLoader.numImagesLoaded == ImageLoader.numImages) {
+												return true;
+											}
+											else {
+												return false;
+											}
+										},
+	loadImages:	function () {
+								// Create image object
+								var imageObj = new Image(); // Object used so image is loaded to cache
+								
+								// Set image list
+								var images =	[
+																"background.png",
+																"grass.png"
+															];
+								// Update number of images
+								ImageLoader.numImages = images.length;
+								
+								// Set image onload and onerror
+								
+								//imageObj.onload	= function (evt) {
+								//										ImageLoader.imageLoaded(this.src);
+								//									}
+								/*imageObj.onerror 	= function (evt) {
+																			ImageLoader.imageFailed(this.src);
+																		}
+								/*imageObj.onabort 	= function (evt) {
+																			ImageLoader.imageFailed(this.src);
+																		}*/
+								
+								// Start loading images
+								var index = 0;
+								for (index = 0; index <= (images.length - 1); index++) {
+									// Fire off loading of image
+									imageObj.src = ImageLoader.imagesPath + images[index];
+								}
+								
+								// Check if everything is loaded
+								if (ImageLoader.loadingComplete()) {
+									return true;
+								}
+								else {
+									return false;
+								}
+							}
+}
+
+/*************************************************************************************************/
+/* LOADING AUDIO                                                                                 */
+/*************************************************************************************************/
+var AudioLoader = {
+	audioPath: "audio/",
+	numAudio: 0, // index for number of audio
+	numAudioLoaded: 0, // index for number of audio loaded
+	
+	audioLoaded:	function (fileName) {
+									AudioLoader.numAudioLoaded++;
+									
+									//alert("Audio loaded: " + fileName + ".");
+								},
+	loadingComplete:	function () {
+											// If number of audio loaded is equal to total number of audio
+											if (AudioLoader.numAudioLoaded == AudioLoader.numAudio) {
+												return true;
+											}
+											else {
+												return false;
+											}
+										},
+	loadAudio:	function () {
+								// Create object
+								//var audioObj = new Audio(); // Object used so audio
+								
+								// Set image list
+								var audio = new Array();
+								AudioLoader.numAudio = audio.length;
+								
+								// Start loading audio
+								var index = 0;
+								for (index = 0; index <= (audio.length - 1); index++) {
+									//imageObj.onLoad = ImageLoader.imageLoaded(images[index]);
+									
+									//imageObj.src = ImageLoader.imagesPath + images[index];
+								}
+								
+								// Check if everything is loaded
+								if (AudioLoader.loadingComplete()) {
+									return true;
+								}
+								else {
+									return false;
+								}
+							}
+}
